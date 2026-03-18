@@ -1,0 +1,38 @@
+{
+  "app": "uv run python app.py",
+  "watch": {
+    "include": ["**"],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "tests",
+      ".git",
+      ".venv",
+      "*.pyc",
+      "__pycache__",
+      ".pytest_cache",
+      ".mypy_cache"
+    ]
+  },
+  "context": {
+    "dev": {
+      "opensearch_instance_type": "t3.small.search",
+      "opensearch_data_nodes": 2,
+      "opensearch_master_nodes": 0,
+      "cache_node_type": "cache.t3.micro",
+      "cache_num_nodes": 1,
+      "multi_az": false,
+      "alarm_actions_enabled": false
+    },
+    "prod": {
+      "opensearch_instance_type": "r6g.xlarge.search",
+      "opensearch_data_nodes": 3,
+      "opensearch_master_nodes": 3,
+      "cache_node_type": "cache.r6g.large",
+      "cache_num_shards": 2,
+      "cache_replicas_per_shard": 1,
+      "multi_az": true,
+      "alarm_actions_enabled": true
+    }
+  }
+}
